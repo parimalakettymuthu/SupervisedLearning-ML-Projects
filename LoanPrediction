@@ -1,0 +1,8 @@
+import pandas as pd 
+load_df = pd.read_csv('LPtrain.csv')
+load_df
+#Picking only records having loan status as 'Y' or 'N' as dataset containing other record types as 'Urban','Rural' & 'Semiurban'
+stage1_df = load_df[load_df['Loan_Status'].isin(['Y','N'])] 
+stage1_df = stage1_df.drop(stage1_df.columns[[13]], axis=1) #Dropped unnamed column 13 
+final_df = stage1_df.dropna() # cleansed the dataset from NAN observations
+final_df # final dataset is prepared for the further visualization & modeling
